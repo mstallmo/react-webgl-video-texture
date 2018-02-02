@@ -13,23 +13,7 @@ class WebGLCanvas extends React.Component {
     }
 
     componentDidMount() {
-        //Ask Chris about moving this back to textures.js
-        const img = new Image();
-        img.src = require('../../../images/nba_min_court.png');
-        img.onload = () => {
-            this.img = img;
-            this.renderCanvas();
-        };
 
-        let data = require('../../../data/tracked_1570592_3_1.json');
-        let parsedData = new Array();
-        for(let i = 0; i < data.tracking.tracklet.length; i++){
-            parsedData.push([]);
-            parsedData[i].push( new Array(data.tracking.tracklet[i].length));
-            for(let j = 0; j < data.tracking.tracklet[i].length; j++) {
-                parsedData[i][j] = ({x: data.tracking.tracklet[i][j].court[0], y: data.tracking.tracklet[i][j].court[1]});
-            }
-        }
     }
 
     renderCanvas() {

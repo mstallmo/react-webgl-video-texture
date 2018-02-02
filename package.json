@@ -1,7 +1,7 @@
 {
-  "name": "react-webgl",
+  "name": "react-webgl-starter",
   "version": "1.0.0",
-  "description": "Webapp using React and WebGL",
+  "description": "Starter boilerplate for front end React and WebGL 2.0 projects",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel open:src lint:watch test:watch",
@@ -14,7 +14,7 @@
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mstallmo/react-webgl.git"
+    "url": "git+https://github.com/mstallmo/react-webgl-starter.git"
   },
   "keywords": [
     "React",
