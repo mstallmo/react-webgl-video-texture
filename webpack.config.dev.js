@@ -30,7 +30,8 @@ export default {
             {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml'},
             {test: /\.(png|jpg|gif)$/, include: path.join(__dirname, 'images'), loader: 'url-loader?limit=8192'},
             {test: /\.glsl$/, include: path.join(__dirname, 'src'), loader: 'webpack-glsl-loader'},
-            {test: /\.json$/, include: path.join(__dirname, 'data'), loader: 'json-loader'}
+            {test: /\.json$/, include: path.join(__dirname, 'data'), loader: 'json-loader'},
+            {test: /\.mp4$/, include: path.join(__dirname, 'resources'), loader: 'url-loader?limit=10000&mimetype=video/mp4'}
         ]
     }
 };

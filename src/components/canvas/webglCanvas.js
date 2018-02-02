@@ -1,19 +1,57 @@
 import React from 'react';
 import {mat4} from 'gl-matrix';
 import {initShaderProgram} from "../../webgl/shaderProgram";
-import {loadTexture} from "../../webgl/textures";
+import {initTexture, updateTexture} from "../../webgl/textures";
 import {initBuffers} from "../../webgl/buffers";
+const videoSrc = require('../../../resources/Firefox.mp4');
+
 
 class WebGLCanvas extends React.Component {
     constructor(props) {
         super(props);
+
+        this.setupVideo = this.setupVideo.bind(this);
         this.renderCanvas = this.renderCanvas.bind(this);
         this.drawScene = this.drawScene.bind(this);
         this.render = this.render.bind(this);
     }
 
     componentDidMount() {
+        this.renderCanvas();
+    }
 
+    setupVideo(url) {
+        const self = this;
+
+        const video = document.createElement('video');
+
+        let playing = false;
+        let timeupdate = false;
+
+        video.autoplay = false;
+        video.muted = true;
+        video.loop = true;
+
+        video.addEventListener('playing', function() {
+            playing = true;
+            checkReady();
+        }, true);
+
+        video.addEventListener('timeupdate', function() {
+            timeupdate = true;
+            checkReady();
+        }, true);
+
+        video.src = url;
+        video.play();
+
+        function checkReady() {
+            if (playing && timeupdate) {
+                self.copyVideo = true;
+            }
+        }
+
+        return video;
     }
 
     renderCanvas() {
@@ -39,9 +77,20 @@ class WebGLCanvas extends React.Component {
         };
 
         const buffers = initBuffers(gl);
-        const texture = loadTexture(gl, this.img);
+        const texture = initTexture(gl);
+        const video = this.setupVideo(videoSrc);
 
-        this.drawScene(gl, programInfo, buffers, texture);
+        function render() {
+            if (this.copyVideo) {
+                updateTexture(gl, texture, video);
+            }
+
+            this.drawScene(gl, programInfo, buffers, texture);
+
+            requestAnimationFrame(render.bind(this));
+        }
+
+        requestAnimationFrame(render.bind(this));
     }
 
     drawScene(gl, programInfo, buffers, texture) {
