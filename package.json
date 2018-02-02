@@ -1,7 +1,7 @@
 {
-  "name": "react-webgl-starter",
+  "name": "react-webgl-video-texture",
   "version": "1.0.0",
-  "description": "Starter boilerplate for front end React and WebGL 2.0 projects",
+  "description": "Display videos as textures in WebGL 2.0",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel open:src lint:watch test:watch",
@@ -14,7 +14,7 @@
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mstallmo/react-webgl-starter.git"
+    "url": "git+https://github.com/mstallmo/react-webgl-video-texture.git"
   },
   "keywords": [
     "React",
@@ -25,9 +25,9 @@
   "author": "Mason Stallmo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mstallmo/react-webgl/issues"
+    "url": "https://github.com/mstallmo/react-webgl-video-texture/issues"
   },
-  "homepage": "https://github.com/mstallmo/react-webgl#readme",
+  "homepage": "https://github.com/mstallmo/react-webgl-video-texture#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^3.3.7",
